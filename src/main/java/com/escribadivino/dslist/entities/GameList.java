@@ -2,7 +2,10 @@ package com.escribadivino.dslist.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Data
+import java.util.Objects;
+
+@Getter
+@Setter
 @NoArgsConstructor
 
 
@@ -15,4 +18,15 @@ public class GameList {
     private Long id;
     private String name;
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        GameList gameList = (GameList) o;
+        return Objects.equals(id, gameList.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

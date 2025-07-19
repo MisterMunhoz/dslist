@@ -1,5 +1,6 @@
 package com.escribadivino.dslist.controlers;
 
+import com.escribadivino.dslist.dto.GameDTO;
 import com.escribadivino.dslist.dto.GameMinDTO;
 import com.escribadivino.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,14 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
+
+    @GetMapping (value = "/{id}")
+    public GameDTO findById(@PathVariable Long id) {
+        GameDTO result = gameService.findById(id);
+        return result;
+
+
+    }
 
     @GetMapping
     public List<GameMinDTO> findAll() {

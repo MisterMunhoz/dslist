@@ -3,7 +3,9 @@ package com.escribadivino.dslist.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@EqualsAndHashCode
+import java.util.Objects;
+
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,5 +22,17 @@ public class Belonging {
         id.setGame(game);
         id.setList(list);
         this.position = position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Belonging belonging = (Belonging) o;
+        return Objects.equals(id, belonging.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
