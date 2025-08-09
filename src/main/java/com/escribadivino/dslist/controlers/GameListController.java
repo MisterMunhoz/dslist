@@ -2,6 +2,7 @@ package com.escribadivino.dslist.controlers;
 
 import com.escribadivino.dslist.dto.GameListDTO;
 import com.escribadivino.dslist.dto.GameMinDTO;
+import com.escribadivino.dslist.dto.ReplacementDTO;
 import com.escribadivino.dslist.services.GameListService;
 import com.escribadivino.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,11 @@ public class GameListController {
     public List<GameMinDTO> findByList(@PathVariable Long listId) {
         List<GameMinDTO> result = gameService.findByList(listId);
         return result;
+
+    }
+    @PostMapping(value = "/{listId}/replacement")
+    public void move(@PathVariable Long listId, @RequestBody ReplacementDTO body) {
+    gameListService.move(listId, body.getSourceIndex(), body.getDestinationIndex());
 
     }
 }
